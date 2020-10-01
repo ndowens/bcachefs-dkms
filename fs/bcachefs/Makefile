@@ -59,6 +59,10 @@ bcachefs-y		:=	\
 	xattr.o
 
 all:
-	$(MAKE) -C /lib/modules/$(shell uname -r)/build M=$(CURDIR) modules
+	cp ../../include/linux/closure.h /lib/modules/$(shell uname -r)/build/include/linux
+	cp ../../include/linux/six.h /lib/modules/$(shell uname -r)/build/include/linux
+	cp ../../include/trace/events/bcachefs.h /lib/modules/$(shell uname -r)/build/include/trace/events
+	$(MAKE) -C /lib/modules/$(shell uname -r)/build M=$$PWD modules
+
 clean:
-	$(MAKE) -C /lib/modules/$(shell uname -r)/build M=$(PWD) clean
+	$(MAKE) -C /lib/modules/$(shell uname -r)/build M=$$PWD clean modules
