@@ -1,5 +1,5 @@
 
-obj-$(CONFIG_BCACHEFS_FS)	+= bcachefs.o
+obj-m	+= bcachefs.o
 
 bcachefs-y		:=	\
 	acl.o			\
@@ -59,6 +59,6 @@ bcachefs-y		:=	\
 	xattr.o
 
 all:
-	$(MAKE) -C /lib/modules/$(shell uname -r)/build M=$(PWD)
+	$(MAKE) -C /lib/modules/$(shell uname -r)/build M=$(CURDIR) modules
 clean:
 	$(MAKE) -C /lib/modules/$(shell uname -r)/build M=$(PWD) clean
